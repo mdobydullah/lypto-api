@@ -1,0 +1,31 @@
+{
+    "name": "obydul/lypto-api",
+    "description": "Laravel cryptocurrency trading API.",
+    "type": "library",
+    "homepage": "https://github.com/mdobydullah/lypto-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md Obydullah",
+            "email": "hi@obydul.me",
+            "homepage": "https://github.com/mdobydullah"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "laravel/laravel": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Obydul\\LyptoAPI\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Obydul\\LyptoAPI\\LyptoAPIServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
