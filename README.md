@@ -3,24 +3,33 @@
 Laravel cryptocurrency trading APIs.
 
 <a name="installation"></a>
+
 ## Installation
 
+### Requirements
+
+* Minimum Laravel version 7.0
+
 Use the following command to install:
+
 ```bash
 composer require obydul/lypto-api
 ```
 
 Laravel 5.5 uses package auto-discovery, so doesn't require you to manually add the ServiceProvider. If you don't use auto-discovery, add the service provider to your `$providers` array in `config/app.php` file like:
+
 ```php
 Obydul\LyptoAPI\LyptoAPIServiceProvider::class
 ```
 
 Run the following command to publish configuration:
+
 ```php
 php artisan vendor:publish --provider="Obydul\LyptoAPI\LyptoAPIServiceProvider" --tag="config"
 ```
 
 Clear application config, cache (optional):
+
 ```php
 php artisan optimize
 ```
@@ -28,6 +37,7 @@ php artisan optimize
 Installation completed.
 
 <a name="configuration"></a>
+
 ## Configuration
 
 After installation, set API key and secret in the environment eariables.
@@ -39,6 +49,7 @@ LYPTO_API_BINANCE_SECRET="your-binane-api-secret"
 ```
 
 <a name="exchanges"></a>
+
 ## Exchanges
 
 Supported exchanges and features:
@@ -50,6 +61,7 @@ Supported exchanges and features:
 We will add more exchanges and APIs soon.
 
 <a name="usage"></a>
+
 ## Usage
 
 Create a Lypto request:
@@ -70,6 +82,7 @@ $exchange->functionName($request);
 ```
 
 ### Binance
+
 Take a look at [Binance APIs and parameters](https://binance-docs.github.io/apidocs/spot/en/#change-log).
 
 ```php
@@ -81,6 +94,7 @@ $binance = new Binance();
 // create order
 $binance->createOrder($request);
 ```
+
 Available Binace methods:
 
 | Title | Method
@@ -95,6 +109,7 @@ Available Binace methods:
 | Get trades for a specific account and symbol | accountTradeList($request)
 
 <a name="examples"></a>
+
 ## Examples
 
 <details>
@@ -136,20 +151,26 @@ $request->symbol = "BTCUSDT";
 $trade_list = self::$binance->accountTradeList($request);
 dd($trade_list);
 ```
+
 </details>
 
 <a name="information"></a>
+
 ## Information
+
 - [Binance API docs](https://binance-docs.github.io/apidocs/spot/en/#change-log)
 - [Binance test network](https://testnet.binance.vision/)
 
 <a name="license"></a>
+
 ## License
 
 The MIT License (MIT). Please see [license file](https://github.com/mdobydullah/laraskrill/blob/master/LICENSE) for more information.
 
 <a name="others"></a>
+
 ## Others
+
 In case of any issues, kindly create one on the [Issues](https://github.com/mdobydullah/lypto-api/issues) section.
 
 Thank you for installing LyptoAPI :heart:.
