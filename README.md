@@ -74,7 +74,9 @@ We will add more exchanges and APIs soon.
 ### Tools
 
 Indicator API list:
-| Name | Features | --- | --- | | TAAPI | Provides technical analysis indicator data
+| Name | Features
+|--- | --- |
+| TAAPI | Provides technical analysis indicator data
 
 <a name="usage"></a>
 
@@ -121,7 +123,7 @@ Binance::createOrder($request);
 
 ```
 
-Available Binace methods:
+Available methods:
 
 | Title | Method
 | --- | --- |
@@ -133,6 +135,11 @@ Available Binace methods:
 | Get all account orders; active, canceled, or filled | allOrders($request)
 | Get current account information | accountInfo($request)
 | Get trades for a specific account and symbol | accountTradeList($request)
+| Create a new OCO | createOCO($request)
+| Cancel an entire Order List | cancelOCO($request)
+| Retrieves a specific OCO based on provided optional parameters | queryOCO($request)
+| Retrieves all OCO based on provided optional parameters | queryAllOCO($request)
+| Retrieves open OCO | queryOpenOCO($request)
 
 ### TAAPI
 
@@ -176,7 +183,7 @@ public function __construct()
 }
 
 // account info
-$account_info = self::$binance->accountInfo();
+$account_info = $this->binance->accountInfo();
 dd($account_info);
 
 // account info using facade

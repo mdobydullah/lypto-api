@@ -39,15 +39,15 @@ class LyptoRequest
     }
 
     /**
-     * convert array to TAAPI query string.
+     * add required parameters of TAAPI.
      */
     public function taapi()
     {
         // important parameter
-        $item = [
+        $params = [
             'secret' => config('lyptoapi.taapi_secret')
         ];
-        $requests = $item + $this->vars;
+        $requests = $params + $this->vars;
 
         return $requests;
     }
