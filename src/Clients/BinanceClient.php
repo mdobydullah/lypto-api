@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 trait  BinanceClient
 {
-    public $isLive, $client, $timestamp, $signature;
+    public $isLive, $client, $timestamp;
 
     /**
      * constructor.

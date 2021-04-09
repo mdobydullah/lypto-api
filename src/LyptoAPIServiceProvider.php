@@ -19,6 +19,12 @@ class LyptoAPIServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . './../config/config.php' => config_path('lyptoapi.php'),
         ], 'config');
+    }
+
+    public function register()
+    {
+        // config file
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'lyptoapi');
 
         // binance facade
         $this->app->bind('binance', function ($app) {
@@ -29,10 +35,5 @@ class LyptoAPIServiceProvider extends ServiceProvider
         $this->app->bind('taapi', function ($app) {
             return new TAAPI();
         });
-    }
-
-    public function register()
-    {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'lyptoapi');
     }
 }

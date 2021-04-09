@@ -12,10 +12,10 @@ class TAAPI
     /**
      * get indicator value.
      */
-    public static function get($endpoint, LyptoRequest $request)
+    public function get($endpoint, LyptoRequest $request)
     {
         // send request
-        $response = self::$client->get($endpoint, $request->taapi());
+        $response = $this->client->get($endpoint, $request->taapi());
         return $response->json();
     }
 }

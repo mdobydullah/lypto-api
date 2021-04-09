@@ -16,16 +16,21 @@ Use the following command to install:
 composer require obydul/lypto-api
 ```
 
-Laravel 5.5 uses package auto-discovery, so doesn't require you to manually add the ServiceProvider. If you don't use auto-discovery, add the service provider to your `$providers` array in `config/app.php` file like:
-
-```php
-Obydul\LyptoAPI\LyptoAPIServiceProvider::class
-```
-
-Run the following command to publish configuration:
+Run the following command to publish config file:
 
 ```php
 php artisan vendor:publish --provider="Obydul\LyptoAPI\LyptoAPIServiceProvider" --tag="config"
+```
+
+(Optional) Laravel 5.5 uses package auto-discovery, so doesn't require you to manually add the ServiceProvider. If you don't use auto-discovery,
+
+```php
+// add the service provider to your `$providers` array in `config/app.php` file
+Obydul\LyptoAPI\LyptoAPIServiceProvider::class
+
+// and add these lines to `$aliases` array
+'Binance' => Obydul\LyptoAPI\Exchanges\Binance::class,
+'TAAPI' => Obydul\LyptoAPI\Tools\TAAPI::class,
 ```
 
 Clear application config, cache (optional):
@@ -69,9 +74,7 @@ We will add more exchanges and APIs soon.
 ### Tools
 
 Indicator API list:
-| Name | Features
-| --- | --- |
-| TAAPI | Provides technical analysis indicator data
+| Name | Features | --- | --- | | TAAPI | Provides technical analysis indicator data
 
 <a name="usage"></a>
 
@@ -91,7 +94,11 @@ $request->param2 = "Value 2";
 Pass Laypto request to exchange's function:
 
 ```php
+// exchange object
 $exchange->functionName($request);
+
+// exchange facade
+Exchange::functionName($request);
 ```
 
 ### Binance
@@ -106,6 +113,12 @@ $binance = new Binance();
 
 // create order
 $binance->createOrder($request);
+
+// using facade
+use Obydul\LyptoAPI\Facades\Binance;
+
+Binance::createOrder($request);
+
 ```
 
 Available Binace methods:
@@ -136,6 +149,8 @@ $indicator_endpoint = "rsi";
 $taapi->get($indicator_endpoint, $request);
 
 // call via facade
+use Obydul\LyptoAPI\Facades\TAAPI;
+
 TAAPI::get($indicator_endpoint, $request);
 ```
 
@@ -150,18 +165,24 @@ TAAPI::get($indicator_endpoint, $request);
 use Obydul\LyptoAPI\Exchanges\Binance;
 use Obydul\LyptoAPI\Libraries\LyptoRequest;
 
-private static $binance;
+private $binance;
 
 /**
  * constructor.
  */
 public function __construct()
 {
-    self::$binance = new Binance();
+    $this->binance = new Binance();
 }
 
 // account info
 $account_info = self::$binance->accountInfo();
+dd($account_info);
+
+// account info using facade
+use Obydul\LyptoAPI\Facades\Binance;
+
+$account_info = Binance::accountInfo();
 dd($account_info);
 
 // create order
@@ -173,22 +194,23 @@ $request->timeInForce = "GTC";
 $request->quantity = 0.01;
 $request->price = 9000;
 $request->newClientOrderId = "my_order_id_1112";
-$create_order = self::$binance->createOrder($request);
+$create_order = $this->binance->createOrder($request);
 dd($create_order);
 
 // account trade list
 $request = new LyptoRequest();
 $request->symbol = "BTCUSDT";
-$trade_list = self::$binance->accountTradeList($request);
+$trade_list = $this->binance->accountTradeList($request);
 dd($trade_list);
 ```
+
 </details>
 
 <details>
 <summary>TAAPI</summary>
 
 ```php
-use Obydul\LyptoAPI\Tools\TAAPI;
+use Obydul\LyptoAPI\Facades\TAAPI;
 use Obydul\LyptoAPI\Libraries\LyptoRequest;
 
 // lypto request

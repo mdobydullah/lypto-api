@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 trait  TAAPIClient
 {
-    public static $client;
+    public $client;
 
     /**
      * constructor.
@@ -22,7 +22,7 @@ trait  TAAPIClient
         $base_uri = "https://api.taapi.io/";
 
         // client
-        self::$client = Http::withOptions(['base_uri' => $base_uri])
+        $this->client = Http::withOptions(['base_uri' => $base_uri])
             ->withHeaders([
                 'Content-Type' => "application/json",
             ]);

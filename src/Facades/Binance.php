@@ -4,7 +4,7 @@ namespace Obydul\LyptoAPI\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class BinanceFacade extends Facade
+class Binance extends Facade
 {
     protected static function getFacadeAccessor()
     {
