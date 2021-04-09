@@ -40,17 +40,23 @@ Installation completed.
 
 ## Configuration
 
-After installation, set API key and secret in the environment eariables.
+After installation, set API key and secret in the ```.env``` file.
 
 ```php
+// exchange
 LYPTO_API_MODE="sandbox" // sanbox or live
 LYPTO_API_BINANCE_KEY="your-binane-api-key"
 LYPTO_API_BINANCE_SECRET="your-binane-api-secret"
+
+// tools
+LYPTO_API_TAAPI_SECRET="your-taapi-secret"
 ```
 
 <a name="exchanges"></a>
 
-## Exchanges
+## Exchanges & Tools
+
+### Exchanges
 
 Supported exchanges and features:
 
@@ -59,6 +65,13 @@ Supported exchanges and features:
 | Binance | Spot trade only
 
 We will add more exchanges and APIs soon.
+
+### Tools
+
+Indicator API list:
+| Name | Features
+| --- | --- |
+| TAAPI | Provides technical analysis indicator data
 
 <a name="usage"></a>
 
@@ -108,6 +121,24 @@ Available Binace methods:
 | Get current account information | accountInfo($request)
 | Get trades for a specific account and symbol | accountTradeList($request)
 
+### TAAPI
+
+[TAAPI](https://taapi.io) provides technical analysis (TA) indicator data.
+
+We have only one method to get indicator values from TAAPI. Have a look:
+
+```php
+use Obydul\LyptoAPI\Tools\TAAPI;
+
+$taapi = new TAAPI();
+$request = new LyptoRequest();
+$indicator_endpoint = "rsi";
+$taapi->get($indicator_endpoint, $request);
+
+// call via facade
+TAAPI::get($indicator_endpoint, $request);
+```
+
 <a name="examples"></a>
 
 ## Examples
@@ -151,6 +182,39 @@ $request->symbol = "BTCUSDT";
 $trade_list = self::$binance->accountTradeList($request);
 dd($trade_list);
 ```
+</details>
+
+<details>
+<summary>TAAPI</summary>
+
+```php
+use Obydul\LyptoAPI\Tools\TAAPI;
+use Obydul\LyptoAPI\Libraries\LyptoRequest;
+
+// lypto request
+$request = new LyptoRequest();
+$request->exchange = 'binance';
+$request->symbol = "BTC/USDT";
+$request->interval = "1h";
+
+// indicator endpoint
+$indicator_endpoint = "macd";
+
+// get data
+$response = TAAPI::get($indicator_endpoint, $request);
+
+dd($response);
+```
+
+Output:
+
+```php
+array:3 [▼
+  "valueMACD" => 289.32379962478
+  "valueMACDSignal" => 257.39665148897
+  "valueMACDHist" => 31.92714813581
+]
+````
 
 </details>
 
@@ -158,8 +222,9 @@ dd($trade_list);
 
 ## Information
 
-- [Binance API docs](https://binance-docs.github.io/apidocs/spot/en/#change-log)
-- [Binance test network](https://testnet.binance.vision/)
+- [Binance API doc](https://binance-docs.github.io/apidocs/spot/en/#change-log)
+- [Binance test network](https://testnet.binance.vision)
+- [TAAPI Doc](https://taapi.io/documentation)
 
 <a name="license"></a>
 

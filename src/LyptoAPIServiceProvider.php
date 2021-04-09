@@ -4,6 +4,7 @@ namespace Obydul\LyptoAPI;
 
 use Illuminate\Support\ServiceProvider;
 use Obydul\LyptoAPI\Exchanges\Binance;
+use Obydul\LyptoAPI\Tools\TAAPI;
 
 class LyptoAPIServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,11 @@ class LyptoAPIServiceProvider extends ServiceProvider
         // binance facade
         $this->app->bind('binance', function ($app) {
             return new Binance();
+        });
+
+        // taapi facade
+        $this->app->bind('taapi', function ($app) {
+            return new TAAPI();
         });
     }
 

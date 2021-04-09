@@ -37,4 +37,18 @@ class LyptoRequest
     {
         return http_build_query($this->vars);
     }
+
+    /**
+     * convert array to TAAPI query string.
+     */
+    public function taapi()
+    {
+        // important parameter
+        $item = [
+            'secret' => config('lyptoapi.taapi_secret')
+        ];
+        $requests = $item + $this->vars;
+
+        return $requests;
+    }
 }
