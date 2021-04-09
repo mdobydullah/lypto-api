@@ -29,8 +29,8 @@ php artisan vendor:publish --provider="Obydul\LyptoAPI\LyptoAPIServiceProvider" 
 Obydul\LyptoAPI\LyptoAPIServiceProvider::class
 
 // and add these lines to `$aliases` array
-'Binance' => Obydul\LyptoAPI\Exchanges\Binance::class,
-'TAAPI' => Obydul\LyptoAPI\Tools\TAAPI::class,
+'Binance' => Obydul\LyptoAPI\Facades\Binance::class,
+'TAAPI' =>Obydul\LyptoAPI\Facades\TAAPI::class,
 ```
 
 Clear application config, cache (optional):
@@ -138,7 +138,7 @@ Available Binace methods:
 
 [TAAPI](https://taapi.io) provides technical analysis (TA) indicator data.
 
-We have only one method to get indicator values from TAAPI. Have a look:
+Let's have a look at the uasge:
 
 ```php
 use Obydul\LyptoAPI\Tools\TAAPI;
