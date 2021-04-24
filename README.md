@@ -74,9 +74,7 @@ We will add more exchanges and APIs soon.
 ### Tools
 
 Indicator API list:
-| Name | Features
-|--- | --- |
-| TAAPI | Provides technical analysis indicator data
+| Name | Features |--- | --- | | TAAPI | Provides technical analysis indicator data
 
 <a name="usage"></a>
 
@@ -127,13 +125,14 @@ Available methods:
 
 | Title | Method
 | --- | --- |
+| Get current account information | accountInfo($request)
+| Current price of a pair | currentPrice($request)
 | Create order | createOrder($request)
 | Cancel an active order | cancelOrder($request)
 | Cancels all active orders on a symbol | cancelOpenOrders($request)
 | Check an order's status | queryOrder($request)
 | Get all open orders on a symbol| currentOpenOrders($request)
 | Get all account orders; active, canceled, or filled | allOrders($request)
-| Get current account information | accountInfo($request)
 | Get trades for a specific account and symbol | accountTradeList($request)
 | Create a new OCO | createOCO($request)
 | Cancel an entire Order List | cancelOCO($request)

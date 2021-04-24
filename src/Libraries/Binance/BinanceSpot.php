@@ -164,21 +164,6 @@ trait BinanceSpot
     }
 
     /**
-     * account info.
-     */
-    public function accountInfo()
-    {
-        // request
-        $request = new LyptoRequest();
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("api/v3/account", $request->all());
-        return $response->json();
-    }
-
-    /**
      *account trade list.
      */
     public function accountTradeList(LyptoRequest $request)

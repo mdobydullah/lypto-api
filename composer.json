@@ -15,7 +15,9 @@
             "homepage": "https://github.com/mdobydullah"
         }
     ],
-    "require": {},
+    "require": {
+        "laravel/framework": "7.*|8.*"
+    },
     "autoload": {
         "psr-4": {
             "Obydul\\LyptoAPI\\": "src/"
