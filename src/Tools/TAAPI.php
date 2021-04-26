@@ -14,8 +14,14 @@ class TAAPI
      */
     public function get($endpoint, LyptoRequest $request)
     {
+        // add api key
+        $params = [
+            'secret' => $this->api_key
+        ];
+        $requests = $params + $request->all();
+
         // send request
-        $response = $this->client->get($endpoint, $request->taapi());
+        $response = $this->client->get($endpoint, $requests);
         return $response->json();
     }
 }

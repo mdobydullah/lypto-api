@@ -118,7 +118,21 @@ $binance->createOrder($request);
 use Obydul\LyptoAPI\Facades\Binance;
 
 Binance::createOrder($request);
+```
 
+Pass api key, secret & mode without .env file:
+
+```php
+$api_key = "YOUR_API_KEY";
+$api_secret = "YOUR_API_SECRET";
+$mode = "sandbox"; // default is live
+$this->binance = new Binance($api_key, $api_secret, $mode); // mode doesn't need to pass for live
+$this->binance = new Binance($api_key, $api_secret); // live
+
+// using facade
+use Obydul\LyptoAPI\Facades\Binance;
+$account_info = Binance::config($api_key, $api_secret, $mode)->accountInfo(); // sandbox
+$account_info = Binance::config($api_key, $api_secret)->accountInfo(); // live
 ```
 
 Available methods:
@@ -158,6 +172,13 @@ $taapi->get($indicator_endpoint, $request);
 use Obydul\LyptoAPI\Facades\TAAPI;
 
 TAAPI::get($indicator_endpoint, $request);
+```
+
+Pass api key without .env file:
+
+```php
+$api_key = "YOUR_API_KEY";
+$response = TAAPI::config($api_key)->get($indicator_endpoint, $request);
 ```
 
 <a name="examples"></a>
