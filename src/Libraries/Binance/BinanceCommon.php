@@ -33,4 +33,14 @@ trait BinanceCommon
         $response = $this->client->get("api/v3/ticker/price", $request->all());
         return $response->json();
     }
+
+    /**
+     * 24 hours price change of a pair.
+     */
+    public function priceChange24Hr(LyptoRequest $request)
+    {
+        // send request
+        $response = $this->client->get("api/v3/ticker/24hr", $request->all());
+        return $response->json();
+    }
 }

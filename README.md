@@ -153,6 +153,7 @@ Available methods:
 | Retrieves a specific OCO based on provided optional parameters | queryOCO($request)
 | Retrieves all OCO based on provided optional parameters | queryAllOCO($request)
 | Retrieves open OCO | queryOpenOCO($request)
+| 24hr Ticker Price Change Statistics | priceChange24Hr($request
 
 ### TAAPI
 
