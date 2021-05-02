@@ -154,6 +154,7 @@ Available methods:
 | Retrieves all OCO based on provided optional parameters | queryAllOCO($request)
 | Retrieves open OCO | queryOpenOCO($request)
 | 24hr Ticker Price Change Statistics | priceChange24Hr($request
+| Average price of a pair (5 mins) | avgPrice($request
 
 ### TAAPI
 

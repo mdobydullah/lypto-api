@@ -43,4 +43,14 @@ trait BinanceCommon
         $response = $this->client->get("api/v3/ticker/24hr", $request->all());
         return $response->json();
     }
+
+    /**
+     * average price of a pair (5 mins).
+     */
+    public function avgPrice(LyptoRequest $request)
+    {
+        // send request
+        $response = $this->client->get("api/v3/avgPrice", $request->all());
+        return $response->json();
+    }
 }
