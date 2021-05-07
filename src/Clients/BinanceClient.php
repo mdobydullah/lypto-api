@@ -45,13 +45,13 @@ trait  BinanceClient
             $this->binance_api_key = $api_key;
             $this->binance_api_secret = $api_secret;
         } else {
-            $this->mode = "sanxbox";
+            $this->mode = config('lyptoapi.mode');
             $this->binance_api_key = config('lyptoapi.binance_api_key');
             $this->binance_api_secret = config('lyptoapi.binance_api_secret');
         }
 
         // check mode
-        if (config('lyptoapi.mode') == "live" || $this->mode == "live")
+        if ($this->mode == "live")
             $this->isLive = true;
         else
             $this->isLive = false;
