@@ -137,6 +137,16 @@ $account_info = Binance::config($api_key, $api_secret)->accountInfo(); // live
 
 Available methods:
 
+Test server:
+
+| Title | Method
+| --- | --- |
+| Test Connectivity | ping()
+| Check Server Time | time()
+| Exchange Information | exchangeInfo()
+
+Spot trade:
+
 | Title | Method
 | --- | --- |
 | Get current account information | accountInfo($request)

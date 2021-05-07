@@ -10,6 +10,36 @@ trait BinanceCommon
     use BinanceClient;
 
     /**
+     * ping server.
+     */
+    public function ping()
+    {
+        // send request
+        $response = $this->client->get("api/v3/ping");
+        return $response->json();
+    }
+
+    /**
+     * server time.
+     */
+    public function time()
+    {
+        // send request
+        $response = $this->client->get("api/v3/time");
+        return $response->json();
+    }
+
+    /**
+     * exchange info.
+     */
+    public function exchangeInfo()
+    {
+        // send request
+        $response = $this->client->get("api/v3/exchangeInfo");
+        return $response->json();
+    }
+
+    /**
      * account info.
      */
     public function accountInfo()
