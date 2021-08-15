@@ -74,7 +74,9 @@ We will add more exchanges and APIs soon.
 ### Tools
 
 Indicator API list:
-| Name | Features |--- | --- | | TAAPI | Provides technical analysis indicator data
+| Name | Features
+|--- | --- |
+| TAAPI | Provides technical analysis indicator data
 
 <a name="usage"></a>
 
@@ -145,11 +147,19 @@ Test server:
 | Check Server Time | time()
 | Exchange Information | exchangeInfo()
 
+Account & Wallet:
+
+| Title | Method
+| --- | --- |
+| Account Status | accountStatus()
+| Get current account information | accountInfo()
+| Get trading status | apiTradingStatus()
+| Get overall balance | accountSnapshot()
+
 Spot trade:
 
 | Title | Method
 | --- | --- |
-| Get current account information | accountInfo($request)
 | Current price of a pair | currentPrice($request)
 | Create order | createOrder($request)
 | Cancel an active order | cancelOrder($request)

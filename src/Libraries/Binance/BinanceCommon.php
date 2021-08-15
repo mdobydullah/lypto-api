@@ -55,6 +55,50 @@ trait BinanceCommon
     }
 
     /**
+     * account info.
+     */
+    public function accountStatus()
+    {
+        // request
+        $request = new LyptoRequest();
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("/sapi/v1/account/status", $request->all());
+        return $response->json();
+    }
+
+    /**
+     * api trading status.
+     */
+    public function apiTradingStatus()
+    {
+        // add additional parameters
+        $request = new LyptoRequest();
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("sapi/v1/account/apiTradingStatus", $request->all());
+        return $response->json();
+    }
+
+    /**
+     * account snapshot.
+     */
+    public function accountSnapshot(LyptoRequest $request)
+    {
+        // add additional parameters
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("sapi/v1/accountSnapshot", $request->all());
+        return $response->json();
+    }
+
+    /**
      * current price of a pair.
      */
     public function currentPrice(LyptoRequest $request)
@@ -75,7 +119,7 @@ trait BinanceCommon
     }
 
     /**
-     * average price of a pair (5 mins).
+     * average price of a pair (5 minutes).
      */
     public function avgPrice(LyptoRequest $request)
     {
