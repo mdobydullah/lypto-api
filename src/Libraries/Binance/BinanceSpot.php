@@ -24,6 +24,48 @@ trait BinanceSpot
     }
 
     /**
+     * all orders.
+     */
+    public function allOrders(LyptoRequest $request)
+    {
+        // add additional parameters
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("api/v3/allOrders", $request->all());
+        return $response->json();
+    }
+
+    /**
+     * query order.
+     */
+    public function queryOrder(LyptoRequest $request)
+    {
+        // add additional parameters
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("api/v3/order", $request->all());
+        return $response->json();
+    }
+
+    /**
+     * open orders.
+     */
+    public function openOrders(LyptoRequest $request)
+    {
+        // add additional parameters
+        $request->timestamp = $this->timestamp;
+        $request->signature = $this->signature($request->query());
+
+        // send request
+        $response = $this->client->get("api/v3/openOrders", $request->all());
+        return $response->json();
+    }
+
+    /**
      * cancel order.
      */
     public function cancelOrder(LyptoRequest $request)
@@ -48,48 +90,6 @@ trait BinanceSpot
 
         // send request
         $response = $this->client->delete("api/v3/openOrders", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * query order.
-     */
-    public function queryOrder(LyptoRequest $request)
-    {
-        // add additional parameters
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("api/v3/order", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * current open orders.
-     */
-    public function currentOpenOrders(LyptoRequest $request)
-    {
-        // add additional parameters
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("api/v3/openOrders", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * all orders.
-     */
-    public function allOrders(LyptoRequest $request)
-    {
-        // add additional parameters
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("api/v3/allOrders", $request->all());
         return $response->json();
     }
 

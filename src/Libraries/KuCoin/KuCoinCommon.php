@@ -30,22 +30,6 @@ trait KuCoinCommon
     }
 
     /**
-     * sub users.
-     */
-    public function subUsers()
-    {
-        $endpoint = "/api/v1/sub/user";
-        $method = "GET";
-        $client = $this->client->withHeaders([
-            'KC-API-SIGN' => $this->signature($method, $endpoint),
-        ]);
-
-        // send request
-        $response = $client->get($endpoint);
-        return $response->json();
-    }
-
-    /**
      * account info.
      */
     public function accountInfo()
@@ -62,76 +46,18 @@ trait KuCoinCommon
     }
 
     /**
-     * account info.
+     * sub users.
      */
-    public function accountStatus()
+    public function subUsers()
     {
-        // request
-        $request = new LyptoRequest();
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
+        $endpoint = "/api/v1/sub/user";
+        $method = "GET";
+        $client = $this->client->withHeaders([
+            'KC-API-SIGN' => $this->signature($method, $endpoint),
+        ]);
 
         // send request
-        $response = $this->client->get("/sapi/v1/account/status", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * api trading status.
-     */
-    public function apiTradingStatus()
-    {
-        // add additional parameters
-        $request = new LyptoRequest();
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("sapi/v1/account/apiTradingStatus", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * account snapshot.
-     */
-    public function accountSnapshot(LyptoRequest $request)
-    {
-        // add additional parameters
-        $request->timestamp = $this->timestamp;
-        $request->signature = $this->signature($request->query());
-
-        // send request
-        $response = $this->client->get("sapi/v1/accountSnapshot", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * current price of a pair.
-     */
-    public function currentPrice(LyptoRequest $request)
-    {
-        // send request
-        $response = $this->client->get("api/v3/ticker/price", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * 24 hours price change of a pair.
-     */
-    public function priceChange24Hr(LyptoRequest $request)
-    {
-        // send request
-        $response = $this->client->get("api/v3/ticker/24hr", $request->all());
-        return $response->json();
-    }
-
-    /**
-     * average price of a pair (5 minutes).
-     */
-    public function avgPrice(LyptoRequest $request)
-    {
-        // send request
-        $response = $this->client->get("api/v3/avgPrice", $request->all());
+        $response = $client->get($endpoint);
         return $response->json();
     }
 }

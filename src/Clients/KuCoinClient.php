@@ -83,7 +83,6 @@ trait  KuCoinClient
         $body = is_array($body) ? json_encode($body) : $body; // Body must be in json format
 
         $timestamp = now()->timestamp * 1000;
-
         $what = $timestamp . $method . $endpoint . $body;
 
         return base64_encode(hash_hmac("sha256", $what, $this->kucoin_api_secret, true));

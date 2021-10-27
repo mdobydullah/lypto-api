@@ -37,4 +37,20 @@ class LyptoRequest
     {
         return http_build_query($this->vars);
     }
+
+    /**
+     * show requests as array.
+     */
+    public function array()
+    {
+        return $this->vars;
+    }
+
+    /**
+     * json encode.
+     */
+    public function json()
+    {
+        return json_encode($this->vars);
+    }
 }
