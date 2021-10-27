@@ -60,7 +60,7 @@ trait  BinanceClient
         $base_uri = $this->isLive ? "https://api.binance.com/" : "https://testnet.binance.vision/";
 
         // client
-        $this->client = Http::timeout(5)->withOptions(['base_uri' => $base_uri])
+        $this->client = Http::withOptions(['base_uri' => $base_uri])
             ->withHeaders([
                 'Content-Type' => "application/json",
                 'X-MBX-APIKEY' => $this->binance_api_key,
